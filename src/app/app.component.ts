@@ -8,9 +8,11 @@ import { Story } from './model/story';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'hacker news';
 
   private results: string[];
+
+  stories: object[] = [];
 
   constructor(
     private hackerNewsService: HackerNewsService
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
         console.log(id);
         this.hackerNewsService.getEachStories(parseInt(id, 10)).subscribe((json: Story) => {
           console.log(json);
+          this.stories.push(json);
         });
       });
     });
