@@ -15,9 +15,13 @@ export class AppComponent implements OnInit {
     private hackerNewsService: HackerNewsService
   ) {}
 
+  // http://www.softantenna.com/wp/webservice/hacker-news-api/
   ngOnInit(): void {
-    const ids = this.hackerNewsService.getTopStories();
-    console.log(ids);
+    this.hackerNewsService.getTopStories().subscribe( data => {
+      this.results = data;
+      console.log('results');
+      console.log(this.results);
+    });
   }
 
 }
