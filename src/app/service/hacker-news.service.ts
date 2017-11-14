@@ -11,4 +11,10 @@ export class HackerNewsService {
   getTopStories(): Observable<any> {
     return this.http.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
   }
+
+  // 引数はstoryの数
+  getEachStories(id: number) {
+    const url = `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`;
+    return this.http.get(url);
+  }
 }

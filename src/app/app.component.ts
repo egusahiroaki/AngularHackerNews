@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HackerNewsService } from './service/hacker-news.service';
+import { Story } from './model/story';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.hackerNewsService.getTopStories().subscribe( data => {
       this.results = data;
-      console.log('results');
+      console.log(typeof(this.results));
       console.log(this.results);
+      this.results.slice(1, 10).forEach(id => {
+        console.log(id);
+        this.hackerNewsService.getEachStories(parseInt(id, 10)).subscribe((json: Story) => {
+          console.log(json);
+        });
+      });
     });
   }
 
