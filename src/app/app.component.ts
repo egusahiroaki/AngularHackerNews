@@ -22,10 +22,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.hackerNewsService.getTopStories().subscribe( data => {
       this.results = data;
-      console.log(typeof(this.results));
-      console.log(this.results);
-      this.results.slice(1, 10).forEach(id => {
-        console.log(id);
+      // console.log(this.results);
+      this.results.slice(0, 10).forEach(id => {
         this.hackerNewsService.getEachStories(parseInt(id, 10)).subscribe((json: Story) => {
           console.log(json);
           this.stories.push(json);
