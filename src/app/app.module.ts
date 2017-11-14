@@ -40,6 +40,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { PaginatorModule } from './paginator/paginator.module';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    PaginatorModule,
   ],
   providers: [
     HackerNewsService,

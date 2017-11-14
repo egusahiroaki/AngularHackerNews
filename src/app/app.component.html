@@ -4,10 +4,12 @@
   </h1>
 </div>
 
-<ul *ngIf="stories">
+<div *ngIf="stories">
+  <ul>
     <mat-card *ngFor="let story of stories">
     <a href="{{story.url}}" target="_blank"><div>{{story.title}}</div></a>
     <div>{{story.score}} points by {{story.by}} {{story.time}}</div>
     </mat-card>
-</ul>
-
+  </ul>
+  <app-hn-paginator (changePageIndex)="pageChanged($event)"></app-hn-paginator>
+</div>
