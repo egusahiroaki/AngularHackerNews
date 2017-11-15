@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { MY_ROUTES } from './app.routing';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HackerNewsService } from './service/hacker-news.service';
@@ -42,12 +42,15 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { PaginatorModule } from './paginator/paginator.module';
 import { DataTransferService } from './service/data-transfer.service';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
   ],
   imports: [
+    MY_ROUTES,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
