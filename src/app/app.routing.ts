@@ -4,7 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 
 const myRoutes = [
-    { path: 'story/:id', component: MainComponent},
+    // story/:idにredirectするように設定
+    { path: 'story/:id',
+      component: MainComponent
+    },
+    { path: '',
+      redirectTo: '/story/1',
+      pathMatch: 'full'
+    },
 ];
 
 export const MY_ROUTES: ModuleWithProviders = RouterModule.forRoot(myRoutes);
