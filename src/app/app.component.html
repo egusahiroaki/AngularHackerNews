@@ -3,13 +3,13 @@
     Welcome to {{title}}!
   </h1>
 </div>
-
+{{currentPageIndex}}
 <div *ngIf="stories">
+  <app-hn-paginator [(pageIndex)]="currentPageIndex"></app-hn-paginator>
   <ul>
     <mat-card *ngFor="let story of stories">
     <a href="{{story.url}}" target="_blank"><div>{{story.title}}</div></a>
     <div>{{story.score}} points by {{story.by}} {{story.time}}</div>
     </mat-card>
   </ul>
-  <app-hn-paginator (changePageIndex)="pageChanged($event)"></app-hn-paginator>
 </div>
