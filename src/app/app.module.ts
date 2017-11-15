@@ -43,11 +43,13 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { PaginatorModule } from './paginator/paginator.module';
 import { DataTransferService } from './service/data-transfer.service';
 import { MainComponent } from './main/main.component';
+import { URLPipe } from './pipe/url-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    URLPipe,
   ],
   imports: [
     MY_ROUTES,
