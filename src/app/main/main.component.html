@@ -12,7 +12,7 @@
       <div>
         {{story.title}}
       </div>
-      <div>
+      <div *ngIf="story.url">
         ( {{story.url | domain }} )
       </div>
     </a>
