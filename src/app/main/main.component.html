@@ -13,10 +13,10 @@
         {{story.title}}
       </div>
       <div *ngIf="story.url">
-        ( {{story.url | domain }} )
+        ( {{ story.url | domain }} )
       </div>
     </a>
-    <div>{{story.score}} points by {{story.by}} {{story.time}}</div>
+    <div>{{ story.score }} points by {{ story.by }} {{ story.time * 1000 | date: 'yyyy/MM/dd HH:mm:SS' }}</div>
     </mat-card>
   </ul>
 </div>
