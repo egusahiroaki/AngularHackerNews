@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { MY_ROUTES } from './app.routing';
 import { AppComponent } from './app.component';
@@ -95,6 +95,7 @@ import { URLPipe } from './pipe/url-pipe';
     HackerNewsService,
     DataTransferService,
     { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

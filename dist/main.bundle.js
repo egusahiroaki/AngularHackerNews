@@ -164,6 +164,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__service_hacker_news_service__["a" /* HackerNewsService */],
                 __WEBPACK_IMPORTED_MODULE_11__service_data_transfer_service__["a" /* DataTransferService */],
                 { provide: __WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' },
+                { provide: __WEBPACK_IMPORTED_MODULE_2__angular_common__["g" /* LocationStrategy */], useClass: __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* HashLocationStrategy */] }
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
         })
