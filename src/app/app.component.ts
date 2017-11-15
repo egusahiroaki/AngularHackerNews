@@ -4,6 +4,7 @@ import { HackerNewsService } from './service/hacker-news.service';
 import { Story } from './model/story';
 import { PageEvent } from '@angular/material';
 import { SimpleChange } from '@angular/core/src/change_detection/change_detection_util';
+import { DataTransferService } from './service/data-transfer.service';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +22,12 @@ import { SimpleChange } from '@angular/core/src/change_detection/change_detectio
   currentPageIndex = 0; // 10story per 1page. 1 ~ 10
 
   constructor(
-    private hackerNewsService: HackerNewsService
+    private hackerNewsService: HackerNewsService,
+    private dataTransferService: DataTransferService,
   ) {}
 
   // http://www.softantenna.com/wp/webservice/hacker-news-api/
   ngOnInit(): void {
-    console.log('App Component: ngOnInit');
     this.hackerNewsService.getTopStories().subscribe( data => {
       this.results = data;
       // console.log('this.results');
@@ -40,6 +41,26 @@ import { SimpleChange } from '@angular/core/src/change_detection/change_detectio
         });
       });
     });
+
+    // paginatorの変化を取得
+    this.dataTransferService.toParentData$.subscribe((pageIndex) => {
+      this.currentPageIndex = parseInt(pageIndex, 10);
+      console.log('this.currentPageIndex');
+      console.log(this.currentPageIndex);
+
+      const pageIndexUnit = this.currentPageIndex * 10;
+
+      const newStories = [];
+      this.results.slice(pageIndexUnit, pageIndexUnit + 10).forEach(id => {
+        this.hackerNewsService.getEachStories(parseInt(id, 10)).subscribe((json: Story) => {
+          // console.log(json);
+          newStories.push(json);
+        });
+      });
+      this.stories = newStories;
+
+    });
+
   }
 
   // ngDoCheck(): void {

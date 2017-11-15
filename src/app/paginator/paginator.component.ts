@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { DataTransferService } from '../service/data-transfer.service';
 
 /**
  * @title Paginator
@@ -12,7 +13,9 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class PaginatorComponent implements OnInit, OnChanges {
 
-  constructor(private paginator: MatPaginatorIntl) {}
+  constructor(
+    private dataTransferService: DataTransferService,
+  ) {}
 
   @Input() pageIndex: number;
   @Output() pageIndexChange = new EventEmitter<number>();
@@ -30,6 +33,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     console.log('paginator change method');
     this.pageIndex = event.pageIndex;
     this.pageIndexChange.emit(event.pageIndex);
+    this.dataTransferService.sendParamToParent(event.pageIndex);
     // const test = this.paginator.previousPageLabel;
     // console.log(test);
   }

@@ -41,6 +41,7 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { PaginatorModule } from './paginator/paginator.module';
+import { DataTransferService } from './service/data-transfer.service';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { PaginatorModule } from './paginator/paginator.module';
   ],
   providers: [
     HackerNewsService,
+    DataTransferService,
   ],
   bootstrap: [AppComponent]
 })
