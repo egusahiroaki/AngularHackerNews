@@ -1,10 +1,10 @@
 <div style="text-align:center">
-  <h1>
+  <h1 class="mat-display-1">
     Welcome to {{title}}!
   </h1>
 </div>
 <router-outlet></router-outlet>
-<div *ngIf="stories">
+<div *ngIf="stories" class="mat-typography">
   <app-hn-paginator [(pageIndex)]="currentPageIndex"></app-hn-paginator>
   <ul>
     <mat-card *ngFor="let story of stories">
@@ -16,7 +16,10 @@
         ( {{ story.url | domain }} )
       </div>
     </a>
-    <div>{{ story.score }} points by {{ story.by }} {{ story.time * 1000 | date: 'yyyy/MM/dd HH:mm:SS' }}</div>
+    <div style ="margin-top: 10px;">
+      {{ story.score }} points
+      by {{ story.by }} {{ story.time * 1000 | date: 'yyyy/MM/dd HH:mm:SS' }}
+    </div>
     </mat-card>
   </ul>
 </div>
