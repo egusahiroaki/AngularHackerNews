@@ -54,23 +54,22 @@ export class MainComponent implements OnInit {
     // paginatorの変化を取得
     this.dataTransferService.toParentData$.subscribe((pageIndex) => {
 
-
-
       this.currentPageIndex = parseInt(pageIndex, 10);
-      console.log('this.currentPageIndex');
-      console.log(this.currentPageIndex);
-
+      // console.log('this.currentPageIndex');
+      // console.log(this.currentPageIndex);
       const pageIndexUnit = this.currentPageIndex * 10;
 
-      const newStories = [];
+      let newStories = [];
       this.results.slice(pageIndexUnit, pageIndexUnit + 10).forEach(id => {
         this.hackerNewsService.getEachStories(parseInt(id, 10)).subscribe((json: Story) => {
           // console.log(json);
           newStories.push(json);
+        },
+        error => { // Hacker News API アクセス失敗
+          newStories = [];
         });
       });
       this.stories = newStories;
-
     });
 
   }
