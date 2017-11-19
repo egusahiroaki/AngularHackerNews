@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { JsonpModule } from '@angular/http/src/http_module';
 import { Jsonp, URLSearchParams } from '@angular/http';
@@ -12,7 +11,6 @@ import 'rxjs/add/operator/catch';
 export class HackerNewsService {
   // Top Stroriesを取得する
   constructor(
-    private http: HttpClient,
     private jsonp: Jsonp,
   ) {}
 
