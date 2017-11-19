@@ -24,13 +24,11 @@ export class HackerNewsService {
       { search: params })
       .map(
         response => {
-          console.log('response');
           return response.json() || {};
         }
       ).
     catch(error => {
-      console.log('response error');
-      console.log(error);
+      console.error(error);
       return Observable.throw(error.statusTest);
     });
   }
@@ -38,7 +36,20 @@ export class HackerNewsService {
   // 引数はstoryの数
   getEachStories(id: number) {
     const url = `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`;
-    return this.http.get(url);
+    const params =  new URLSearchParams();
+    params.set('callback', 'JSONP_CALLBACK');
+    return this.jsonp.get(url,
+      { search: params })
+      .map(
+        response => {
+          return response.json() || {};
+        }
+      ).
+    catch(error => {
+      console.error(error);
+      return Observable.throw(error.statusTest);
+    });
+
   }
 }
 
