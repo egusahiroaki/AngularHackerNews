@@ -1,15 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { JsonpModule } from '@angular/http/src/http_module';
+import { Jsonp, URLSearchParams } from '@angular/http';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class HackerNewsService {
   // Top Stroriesを取得する
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private jsonp: Jsonp,
+  ) {}
 
   // user https://hacker-news.firebaseio.com/v0/item/126809.json?print=pretty
   getTopStories(): Observable<any> {
-    return this.http.get('https://hacker-news.firebaseio.com/v0/topstories.json');
+    const params =  new URLSearchParams();
+    params.set('callback', 'JSONP_CALLBACK');
+    return this.jsonp.get('https://hacker-news.firebaseio.com/v0/topstories.json',
+      { search: params })
+      .map(
+        response => {
+          console.log('response');
+          return response.json() || {};
+        }
+      ).
+    catch(error => {
+      console.log('response error');
+      console.log(error);
+      return Observable.throw(error.statusTest);
+    });
   }
 
   // 引数はstoryの数

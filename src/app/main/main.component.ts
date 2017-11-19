@@ -46,6 +46,9 @@ export class MainComponent implements OnInit {
           this.stories.push(json);
         });
       });
+    },
+    error => { // Hacker News API アクセス失敗
+      this.stories = [];
     });
 
     // paginatorの変化を取得
