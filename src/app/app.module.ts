@@ -46,7 +46,7 @@ import { DataTransferService } from './service/data-transfer.service';
 import { MainComponent } from './main/main.component';
 import { URLPipe } from './pipe/url-pipe';
 
-import { JsonpModule} from '@angular/http';
+import { JsonpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
